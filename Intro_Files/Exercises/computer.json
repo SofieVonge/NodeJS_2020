@@ -1,0 +1,10 @@
+{
+    "brand": "ASUS",
+    "productAge": 2,
+    "keyboardKeys": [],
+    "something": {
+        "newKey": "nestedPair"
+    },
+    "nestedarray": [{"name": "etnavn"}, 
+        {"name": "etandetnavn"}]
+}
