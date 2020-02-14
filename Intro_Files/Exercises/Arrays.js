@@ -46,8 +46,12 @@ console.log(diet);
 // Exercise 6 - Copy array
 
 // You really like your daily diet from last exercise. Copy it to a new array called dinnerTray so you can give it to a friend.  
-var dinnerTray = diet;
-console.log(dinnerTray);
+//løsning 1
+var dinnerTray = diet.slice();
+
+//løsning 2, spread operator, unpacking the elements
+var dinnerTray = [...diet];
+console.log("new dinnerTray", dinnerTray);
 // --------------------------------------
 
 // --------------------------------------
@@ -57,7 +61,8 @@ var letters = ["a","b","c", "d", "e", "f", "g", "h"];
 
 // log every second char in the array starting from b
 
-for(var i = 1; i < letters.length;i+=2){
+for(var i = 1; i < letters.length; i+=2)
+{
     console.log(letters[i]);
 }
 
@@ -70,7 +75,8 @@ var discardedNumbers = [];
 
 // log the element if the number is above 6 or below 0
 // else push them to the array discardedNumbers
-for(var i = 0; i < numbers.length;i++) {
+for(var i = 0; i < numbers.length; i++)
+{
 
     if(numbers[i] > 6 || numbers[i] < 0)
     {
