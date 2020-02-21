@@ -59,6 +59,7 @@ const aboutMe = function(myself)
 aboutMe(me);
 
 //arrow functions () => står i stedet for function()
+//arrow functions kan kun bruges som en variabel
 const anotherObject = 
 {
     "myFav": () =>
