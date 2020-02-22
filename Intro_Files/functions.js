@@ -8,7 +8,7 @@ addition(5, 45);
 test = "this is a test";
 var test;
 
-//med en const skal man skabe attributten samntidig med at man assigner den!
+//med en const skal man skabe attributten samtidig med at man assigner den!
 const konstant = "konstant";
 
 //let er scoped hvor man definerer det hvor var er mere global, kan ikke hoistes
