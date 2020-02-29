@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Request</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+        
+
+     </style>
+</head>
+<body>
+
+    <h1>Request</h1>
+    <br>
+    <div>
+        Request is a module for Node handling http requests. So we use it when we need to interact with other web services like an API call. <br>
+        After installing the module, we import it and make a request to a web page.
+    </div>
+    <p style="text-align: center;"><b>Example</b></p><br>
+    <div>
+        //importing it<br>
+        const request = require(“request);<br>
+        //using request to display the google.com’s html page when accessing the route proxygoogle<br>
+        app.get(“/proxygoogle”, (req, res) => {<br>
+        request.(http://www.google.com, (error, response, body) => {<br>
+        return res.send(body);<br>
+        });<br>
+        });<br>
+
+
+    </div>
+    
+</body>
+</html>

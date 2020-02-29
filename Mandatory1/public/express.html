@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Express</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        #headline {
+            text-align: center;
+        }
+
+        #get-left {
+            float: left;
+        }
+
+        #get-right {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Express</h1>
+    <br>
+
+    <p id="about-text">
+        Express is a module for Node.js. It’s a web framework and therefore used in web applications. It’s popular because it’s minimalistic and very flexible. <br>
+
+        After installing it, it has to be imported to the controllerside of the app in order to be able to use it.
+        After that you make your app listen on a specific port and then you can create various http verb requests like get and post. <br>
+    </p>
+    <div id="intro">
+        This is how to set it up in your code: <br>
+        <br>
+        //importing it<br>
+        const express = request(“express”); <br>
+        <br>
+        //express returns a method<br>
+        const app = express(); <br>
+        <br>
+        //app listens on port 3000. It’s also possible to give listen a callback function in order to check for errors.<br>
+        app.listen(3000); <br>
+        <br>
+    </div>
+    <p id="headline"> <b>Here are some examples on various get methods.</b></p> <br>
+    <div id="get-left">
+        //a get method for the index page sending a JSON object<br>
+        app.get(“/”, (req, res) => {<br>
+        return res.send({message: “sending a JSON object”});<br>
+        });<br>
+        <br>
+        //another get method, this time for the route aboutus sending a html file <br>
+        //located in a folder named public<br>
+        app.get(“/aboutus”, (req, res) => {<br> 
+        return res.sendFile(__dirname + /public/aboutus.html);<br>
+        });<br>
+
+    </div>
+
+    <div id="get-right">
+        //a get method with a path variable<br>
+        app.get(“/users/:id”, (req, res) => {<br>
+        const item = collection.find(item => item.id === Number(req.params.id));<br>
+        return res.send({anItem: item});<br>
+            
+        });<br>
+    </div>
+    
+</body>
+</html>
