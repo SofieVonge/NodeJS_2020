@@ -7,10 +7,7 @@
     <title>Express</title>
 
     <style>
-        h1 {
-            text-align: center;
-        }
-
+     
         #headline {
             text-align: center;
         }
@@ -26,6 +23,8 @@
 </head>
 <body>
 
+    <span class="menu">
+    </span>
     <h1>Express</h1>
     <br>
 
@@ -38,13 +37,16 @@
     <div id="intro">
         This is how to set it up in your code: <br>
         <br>
-        //importing it<br>
+        // importing it<br>
         const express = request(“express”); <br>
         <br>
-        //express returns a method<br>
+        // express returns a method<br>
         const app = express(); <br>
         <br>
-        //app listens on port 3000. It’s also possible to give listen a callback function in order to check for errors.<br>
+        // tell express the name of the static folder <br>
+        app.use(express.static('public')); <br>
+        <br>
+        // app listens on port 3000. It’s also possible to give listen a callback function in order to check for errors.<br>
         app.listen(3000); <br>
         <br>
     </div>
@@ -56,7 +58,7 @@
         });<br>
         <br>
         //another get method, this time for the route aboutus sending a html file <br>
-        //located in a folder named public<br>
+        //located in the static folder public<br>
         app.get(“/aboutus”, (req, res) => {<br> 
         return res.sendFile(__dirname + /public/aboutus.html);<br>
         });<br>
@@ -65,12 +67,16 @@
 
     <div id="get-right">
         //a get method with a path variable<br>
-        app.get(“/users/:id”, (req, res) => {<br>
-        const item = collection.find(item => item.id === Number(req.params.id));<br>
-        return res.send({anItem: item});<br>
-            
+        app.get(“/collection/:id”, (req, res) => {<br>
+        const item = array.find(item => item.id === Number(req.params.id));<br>
+        return res.send({response: item});<br>      
         });<br>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     
 </body>
 </html>

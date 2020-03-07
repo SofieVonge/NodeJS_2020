@@ -7,30 +7,41 @@
     <title>Nodejs</title>
 
     <style>
-        h1 {
-            text-align: center;
-        }
+       
         p {
             text-align: center;
+            background-color: gray;
+        }
+
+        span {
+            color: red;
         }
     </style>
 </head>
 <body>
-
+    <span class="menu">
+    </span>
+    <br>
     <h1>Nodejs</h1> 
     <br>
     <div>
         Node is a server environment that uses Javascript. It has become a popular tool since it can execute Javascript outside a browser and thus be used both frontend and backend.<br>
-        Node has a built tool called <span style="color: red;">npm</span> which stands for Node Package Manager. With this we can easily install modules to use for easy development. Framework modules can be found on <a href="https://www.npmjs.com/">npmjs.com</a>.<br>
+        Node has a built tool called <span>npm</span> which stands for Node Package Manager. With this we can easily install modules to use for easy development. Framework modules can be found on <a href="https://www.npmjs.com/">npmjs.com</a>.<br>
         To install a module first create a json file named package.json, then run the following command in your project’s folder:<br>
         <p>npm install [module name]</p><br>
         This will generate a node_modules folder with all modules in it and it will update the package.json file where it’s possible to see all dependencies. 
         You can also manually add the dependencies to the package file.<br>
-        Then you will only need to run <span style="color: red;">npm install</span> in the command line.<br>
+        Then you will only need to run <span>npm install</span> in the command line.<br>
+        You can also use the command <span>npm init</span> to make Node make the package.json file containing all sorts of information, like keywords or what license you are using. <br>
         To run a node program simply just type the following in the command line in your project’s folder:<br>
         <p>node [name of js file]</p><br>
         Consider using <a href="/nodemon">Nodemon</a> for an easier execution.<br>
+        In the package.json file, it is also possible to make your own scripts telling Node different ways to start the app. Then you write the following in the command line to start: <br>
+        <p>node run [name of script]</p>
     </div>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

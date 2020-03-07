@@ -1,0 +1,25 @@
+{
+  "name": "keatube",
+  "version": "1.0.0",
+  "description": "A video site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env PORT=80 node app.js",
+    "start-dev": "cross-env PORT=3000 nodemon app.js"
+  },
+  "keywords": [
+    "video",
+    "videos",
+    "tube",
+    "kea"
+  ],
+  "author": "Sofie",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
+  }
+}
