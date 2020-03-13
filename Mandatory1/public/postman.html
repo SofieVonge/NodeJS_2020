@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <title>Postman</title>
+</head>
+<body>
+    <span class="menu"></span>
+<br>
+    <h1>Postman</h1>
+    <br>
+    <div>
+        Postman is an API tool you can use when developing APIs or when testing an API that you will use in your own app. With that you can connect to an API and use the different http requests. <br>
+        For more about APIs, see <a href="/restapi">API</a>. <br>
+        <br>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Verb</th>
+                <th>Example</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GET</td>
+                <td>/collection/id</td>
+                <td>This is how you receive information.<br>
+                You either ask for the whole collection or a specific item with an id</td>
+              </tr>
+              <tr>
+                <td>POST</td>
+                <td>/collection</td>
+                <td>This is how you add an item to a collection. <br>
+                Trust that the developer takes care of the id</td>
+              </tr>
+              <tr>
+                <td>PUT</td>
+                <td>/collection/id</td>
+                <td>This is how you update an item in a collection.
+              </td>
+              </tr>
+              <tr>
+                <td>DELETE</td>
+                <td>/collection/id</td>
+                <td>This is how you delete an item in a collection.</td>
+              </tr>
+            </tbody>
+          </table>
+          <br>
+          <br>
+          When working with someone's API, you will most likely not be able to do anything else than GET from Postman. <br>
+          But when developing your own API, Postman is a great tool to test that you can actually POST, PUT and DELETE.
+    </div>
+
+    <script src="./index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+</body>
+</html>

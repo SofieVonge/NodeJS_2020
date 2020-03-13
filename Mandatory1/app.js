@@ -49,6 +49,10 @@ app.get("/callback", (req, res) => {
     return res.sendFile(__dirname + "/public/callback.html");
 });
 
+app.get("/postman", (req, res) => {
+    return res.sendFile(__dirname + "/public/postman.html");
+});
+
 
 const port = process.env.port ? process.env.port : 3000;
 
