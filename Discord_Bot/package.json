@@ -1,0 +1,19 @@
+{
+  "name": "anna",
+  "version": "1.0.0",
+  "description": "Anna is a fun bot that threatens to ban you for nothing at all!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bot",
+    "bots"
+  ],
+  "author": "Sofie Vonge Jensen",
+  "license": "MIT",
+  "dependencies": {
+    "discord-bot": "^0.2.16",
+    "discord.js": "^12.0.2"
+  }
+}

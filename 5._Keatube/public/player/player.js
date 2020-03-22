@@ -4,7 +4,6 @@ const url = window.location.href;
 
 let videoId = url.substr(url.lastIndexOf("/") +  1);
 
-console.log("video id:", videoId);
 
 //injecting the video id into the source
 const player = `<video controls>
