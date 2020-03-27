@@ -9,3 +9,15 @@ body {
 #logo {
     width: 20%;
 }
+
+#main-content {
+    min-height: calc(100vh - 110px);
+}
+
+footer {
+    height: 10px;
+}
+
+#upload-link {
+    float: right;
+}

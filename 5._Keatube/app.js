@@ -18,6 +18,7 @@ const navbarPage = fs.readFileSync("./public/navbar/navbar.html", "utf8");
 const frontpage = fs.readFileSync("./public/frontpage/frontpage.html", "utf8");
 const footer  = fs.readFileSync("./public/footer/footer.html", "utf8");
 const player = fs.readFileSync("./public/player/player.html", "utf8");
+const upload = fs.readFileSync("./public/upload/upload.html", "utf8");
 
 
 app.get("/", (req, res) => {
@@ -29,6 +30,10 @@ app.get("/", (req, res) => {
 
 app.get("/player/:id", (req, res) => {
     return res.send(navbarPage + player + footer);
+});
+
+app.get("/upload", (req, res) => {
+    return res.send(navbarPage + upload + footer);
 });
 
 //import routes (from file)
