@@ -51,6 +51,6 @@ app.listen(port, error => {
         console.log("Not running");
     }
     else {
-        console.log("Running on port", server.address().port);
+        console.log("This server is running on port", server.address().port);
     }
 });
