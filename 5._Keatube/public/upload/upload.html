@@ -2,9 +2,20 @@
 
 <h1>Upload</h1>
 
-<form action="/videos" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+<form action="/videos" method="POST" name="videoupload" enctype="multipart/form-data" onsubmit="return validateForm()">
     <input placeholder="title" name="title"/>
     <textarea placeholder="description" name="description" rows="10" cols="30"></textarea>
+    <select name="category">
+      <option value="animals">Animals</option>
+      <option value="automobiles">Automobiles</option>
+      <option value="food">Food</option>
+      <option value="games">Games</option>
+      <option value="nature">Nature</option>
+      <option value="science">Science</option>
+      <option value="scifi">Sci-fi</option>
+      <option value="sports">Sports</option>
+    </select>
+    <input placeholder="tags" name="tags"/>
     <input type="file" name="uploadedVideo" accept="video/*" onchange="handleFileUpload(this.files)"/>
     <button type="submit">Submit</button>
   </form>

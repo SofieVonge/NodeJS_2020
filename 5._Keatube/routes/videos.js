@@ -29,8 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage}); //setting the destination for where our videos go to, see storage dest
 
 //we need the uuid4 to get a unique id for the path to avoid collision for videos with same title
-const videos = [{ 
-                id: "", 
+const videos = [{  
                 title: "NightSky",
                 thumbnail: "", 
                 description: "Watch this sky", 
@@ -59,16 +58,44 @@ router.get("/videos/:id", (req, res) => {
     return res.send({response: video});
 });
 
-//upload.single is from multer, uploadedVideo is from from the name in the form
+//upload.single is from multer, uploadedVideo is from the name in the form
 router.post("/videos", upload.single("uploadedVideo"), (req, res) => {
-    //req.file contains the file and fileinformation
+    //console.log(req.file) contains the file and fileinformation
+    //console.log(req.body) is the formdata
+
+    const tagArray = req.body.tags.split("/\s*[,\s]\s*/"); //reqEx, expensive!
+
+    const video = {title: req.body.title.trim(),
+                    thumbnail: "", 
+                    description: req.body.description,
+                    fileName: req.file.filename, 
+                    uploadDate: new Date(), 
+                    category: req.body.category, 
+                    tags: tagArray
+                };
+
+    const titleMaxLength = 128;
+    const descriptionMaxLength = 2048;
+
+    if (video.title.length === 0 || video.title.length > titleMaxLength) {
+        return res.send({response: `The title is longer than ${titleMaxLength} chars .`});
+    }
+
+    if (video.description.length > descriptionMaxLength) {
+        return res.send({response: `The description is longer than ${descriptionMaxLength} chars.`});
+    }
+
+    const fileSizeLimit = 262144000;
+
+    if (req.file.size === 0 || req.file.size > fileSizeLimit) {
+        return res.send({response: `The video is bigger than ${fileSizeLimit} bytes.`});
+    }
+    
+    videos.push(video);
 
     return res.redirect("/"); //take us to the frontpage after uploading file
 });
 
-//router.post("/test", (req, res) => {
-  //  return res.send({response: req.body})
-//});
 
 //export the js object in router
 module.exports = router;
