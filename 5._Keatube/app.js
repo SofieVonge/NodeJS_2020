@@ -43,7 +43,7 @@ const videosRoute = require("./routes/videos.js");
 app.use(videosRoute);
 
 
-const port = process.env.port ? process.env.port : 3000;
+const port = process.env.PORT ? process.env.PORT : 3000;
 
 app.listen(port, error => {
     if (error)
@@ -51,6 +51,6 @@ app.listen(port, error => {
         console.log("Not running");
     }
     else {
-        console.log("Running on port", port);
+        console.log("Running on port", server.address().port);
     }
 });
