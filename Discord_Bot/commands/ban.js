@@ -1,10 +1,10 @@
 module.exports = {
     name: "ban",
-    description: "Ban!",
+    description: "Tell Anna to ban a user",
     guildOnly: true,
     execute(message, args) {
         if (!message.mentions.users.size) {
-            return message.channel.send(`Who should I ban, ${message.author.username}? Try tagging someone next time, n00b!`);
+            return message.channel.send(`Who should I ban, ${message.author.username}? Try tagging someone next time, n00b ...`);
         } 
  
         if (message.mentions.users.size > 1) {

@@ -46,7 +46,7 @@ client.on("message", message => {
     //}
 
     if (!command) {
-        return message.channel.send(`Try again, ${message.author}.`);
+        return message.channel.send(`Try again, ${message.author}. I don't understand your command`);
     }
     try {
         command.execute(message, args);

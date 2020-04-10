@@ -1,6 +1,6 @@
 module.exports = {
     name: "yell",
-    discription: "Yell!",
+    description: "Tell Anna to yell at a user",
     guildOnly: true,
     execute(message, args) {
         if (!message.mentions.users.size) {

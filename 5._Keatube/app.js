@@ -45,12 +45,12 @@ app.use(videosRoute);
 
 const port = process.env.PORT ? process.env.PORT : 3000;
 
-app.listen(port, error => {
+const server = app.listen(port, error => {
     if (error)
     {
         console.log("Not running");
     }
     else {
-        console.log("This server is running");
+        console.log("This server is running on port", server.address().port);
     }
 });
