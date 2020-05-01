@@ -4,5 +4,12 @@
 
     <div id="player"></div>
     <div id="description"></div>
+    <div id="views"></div>
+    <div id="comments"></div>
+
+    <form action="/videos/:id" method="POST" name="commentUpload" enctype="multipart/form-data" onsubmit="return validateForm()">
+        <textarea placeholder="write comment here" name="comment" rows="10" cols="30"></textarea>
+        <button type="submit">Submit</button>
+    </form>
 
     <script src="./player.js"></script>

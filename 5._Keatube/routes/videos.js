@@ -37,6 +37,8 @@ const videos = [{
                 uploadDate: "", 
                 category: "Science", 
                 tags: ["stars", "night"],
+                views: 0,
+                comments: ["this is a comment", "this is another one"]
             }];
 
  const videosPerPage = 12;
@@ -55,7 +57,27 @@ router.get("/videos", (req, res) => {
 router.get("/videos/:id", (req, res) => {
     //find returns an object, filter returns an array
     const video = videos.find(video => video.fileName === req.params.id);
+
+    video.views++;
+
     return res.send({response: video});
+});
+
+router.post("/videos/:id", (res, req) => {
+    console.log(req.body);
+
+    const comment = req.body.comment;
+
+    const maxLength = 2048;
+    
+    if (comment.length === 0 || comment.length > maxLength) {
+        return res.send({response: `The comment is longer than ${maxLength} chars`});
+    }
+
+    const video = videos.find(video => video.fileName === req.params.id);
+    video.comments.push(comment);
+
+    return res.redirect("/videos/:id");
 });
 
 //upload.single is from multer, uploadedVideo is from the name in the form
@@ -71,7 +93,9 @@ router.post("/videos", upload.single("uploadedVideo"), (req, res) => {
                     fileName: req.file.filename, 
                     uploadDate: new Date(), 
                     category: req.body.category, 
-                    tags: tagArray
+                    tags: tagArray,
+                    views: 0,
+                    comments: []
                 };
 
     const titleMaxLength = 128;

@@ -1,5 +1,6 @@
 let fileValid = false;
 
+
 function validateForm() {
     const title = document.forms.videoupload.title.value.trim(); //trims down all extra whitespaces
     const description = document.forms.videoupload.description.value;
@@ -10,13 +11,18 @@ function validateForm() {
 
     //can't be empty or longer than 128
     if (title.length === 0 || title.length > titleMaxLength) {
-        //need to say to the user what went wrong
+        Swal.fire({
+            icon: "error",
+            title: "Ooops",
+            text: "The title is too short or too long",
+        });
         return false;
     }
 
     const descriptionMaxLength = 2048;
 
     if (description.length > descriptionMaxLength) {
+        Swal.fire("Your description is too long!");
         return false;
     }
 
@@ -32,6 +38,7 @@ function handleFileUpload(files) {
 
     if (fileType !== "video") {
         fileValid = false;
+        Swal.fire("That is an invalid file type.");
         return;
     }
 
@@ -40,6 +47,7 @@ function handleFileUpload(files) {
             
     if (fileSize > fileSizeLimit) {
         fileValid = false;
+        Swal.fire("Your file is way too big!");
         return;
     }
 

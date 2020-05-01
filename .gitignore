@@ -1,5 +1,7 @@
 **/videos/*
 
+mysqlCredentials.js
+
 # Logs
 logs
 *.log

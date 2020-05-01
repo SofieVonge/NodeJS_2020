@@ -21,12 +21,23 @@ client.once("ready", () => {
     console.log("Bot is ready");
 });
 
+const badWords = ["fuck", "shit", "fucking", "twat", "muppet"];
+
 
 // bot response to messages that the users send
 client.on("message", message => {
 
+        //what happens if the user doesn't interact with the bot directly via !
     if (!message.content.startsWith(prefix)) {
-        return; //what happens if the user doesn't interact with the bot directly
+        const words = message.content.toLocaleLowerCase().split(/ +/);
+        
+        words.map(word => {
+            if (badWords.includes(word)) {
+                return message.channel.send(`Did you just say ${word}?!?!?! Baaaaaaad, ${message.author.username}! That is NSFW!`);
+            }
+        });
+
+        return; 
     } 
 
     // making an array of the arguments minus the prefix, split by a space (regex)
@@ -46,7 +57,7 @@ client.on("message", message => {
     //}
 
     if (!command) {
-        return message.channel.send(`Try again, ${message.author}. I don't understand your command`);
+        return message.channel.send(`Try again, ${message.author}. I don't understand your command. Use the !help command to see all my commands.`);
     }
     try {
         command.execute(message, args);

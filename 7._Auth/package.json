@@ -1,0 +1,22 @@
+{
+  "name": "7._auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "migrate:rollback": "knex migrate:rollback",
+    "migrate:latest": "knex migrate:latest",
+    "migrate:make": "knex migrate:make",
+    "seed:make": "knex seed:make",
+    "seed:run": "knex seed:run",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sofie Vonge Jensen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.0",
+    "mysql": "^2.18.1",
+    "objection": "^2.1.3"
+  }
+}
