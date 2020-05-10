@@ -2,10 +2,23 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
+// parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+
+
+app.use(express.static('public'));
 
 const authRoutes = require("./routes/auth.js");
 
 app.use(authRoutes);
+
+const userRoutes = require("./routes/users.js");
+
+app.use(userRoutes);
+
+const electiveRoutes = require("./routes/electives.js");
+
+app.use(electiveRoutes);
 
 //udpakker model fra objection, kunne også skrive const something = require("objection").Model;
 const { Model } = require("objection");
@@ -21,9 +34,17 @@ const knex = Knex(knexfile.development);
 //all our models are now connected to the db
 Model.knex(knex);
 
-const userRoutes = require("./routes/users.js");
+app.get("/", (req, res) => {
+    return res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+});
 
-app.use(userRoutes);
+app.get("/signup", (req, res) => {
+    return res.sendFile(__dirname + "/public/signup/signup.html");
+});
+
+app.get("/welcome", (req, res) => {
+    return res.sendFile(__dirname + "/public/welcome/welcome.html");
+});
 
 
 

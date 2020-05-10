@@ -4,6 +4,7 @@ const app = express();
 
 app.use(express.json());
 
+
 //giver client adgang til alt i public og videomappen
 app.use(express.static('public'));
 app.use(express.static('videos'));
