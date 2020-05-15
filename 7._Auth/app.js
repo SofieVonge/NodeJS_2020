@@ -5,8 +5,44 @@ app.use(express.json());
 // parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
 
+//session is a method that takes a json
+const session = require("express-session");
+
+const config = require("./config/config.json");
+
+app.use(session({
+    secret: config.sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+}));
+
+const rateLimit = require("express-rate-limit");
+
+//rateLimit er en metode der tager et json
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, //15 minutter
+    max: 100 // hver ip har kun 100 forsøg per windowMs
+});
+
+app.use(limiter);
+
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, //15 minutter
+    max: 8 // hver ip har kun 8 forsøg per windowMs
+});
+
+//set a specific limiter on specific routes
+app.use("/signup", authLimiter);
+app.use("/login", authLimiter);
+
 
 app.use(express.static('public'));
+
+//middelware, will be executed on ALL routes below this!
+/*app.use((req, res, next) => {
+    console.log("Time of request", new Date());
+    next(); //next is a function that calls the next route below this
+});*/
 
 const authRoutes = require("./routes/auth.js");
 
@@ -19,6 +55,7 @@ app.use(userRoutes);
 const electiveRoutes = require("./routes/electives.js");
 
 app.use(electiveRoutes);
+
 
 //udpakker model fra objection, kunne også skrive const something = require("objection").Model;
 const { Model } = require("objection");

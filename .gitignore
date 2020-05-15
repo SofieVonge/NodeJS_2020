@@ -1,6 +1,7 @@
 **/videos/*
 
 mysqlCredentials.js
+config.json
 
 # Logs
 logs

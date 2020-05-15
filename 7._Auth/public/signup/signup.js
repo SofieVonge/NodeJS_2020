@@ -34,7 +34,7 @@ function validateSignUp() {
                 data.response.map((user) => {
                 console.log("user:", user);
 
-                if (user.username === name) {
+                if (user.username === username) {
                     alert("User already exists");
                     return false;
                 }

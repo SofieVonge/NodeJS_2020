@@ -1,6 +1,13 @@
 const router = require("express").Router();
 const User  = require("../models/User.js");
 
+const bcrypt = require("bcrypt");
+const saltRounds = 12;
+
+//bcrypt.hash("password", saltRounds).then(hash => console.log(hash));
+
+//bcrypt.compare("password", "$2b$12$9rO.PG0U1wtWGKzHwAvcWO364svqKRKBdbqtFHtDZA1oFTpce.eNi").then(result => console.log(result));
+
 
 //sign up with promises
 router.post("/signup", (req, res) => {
@@ -21,14 +28,16 @@ router.post("/signup", (req, res) => {
                         return res.status(400).send({response: "user already exists"});
 
                     } else { //if no user exists by that name
-                         //add new user
-                         User.query().insert({
-                             username,
-                             password
+                         //add new user with a hashed password
+                         bcrypt.hash(password, saltRounds).then(hash => {
+                            User.query().insert({
+                                username,
+                                password: hash
                             }).then(newUser => {
                                 return res.redirect("/");
                                // return res.send({response: `The user ${newUser.username} is created`});
                             });
+                         });    
                     }
                    
                 });
@@ -48,12 +57,19 @@ router.post("/login", (req, res) => {
     if (username && password) {
 
         try {
-            User.query().select().where("username", username).where("password", password).limit(1).then(found => {
+            User.query().select().where("username", username).limit(1).then(found => {
                 if (found.length > 0) {
-                    return res.redirect("/welcome");
+                    bcrypt.compare(password, found.password).then(result => {
+                        if (result) {
+                            //set the session to be logged in
+                            return res.redirect("/welcome");
+                        }
+                        return res.status(400).send({response: "Password invalid"});
+                    });
+                                       
                 }
 
-                return res.status(400).send({response: "Username or password invalid"});
+                return res.status(400).send({response: "Username invalid"});
             });
 
         } catch (error) {

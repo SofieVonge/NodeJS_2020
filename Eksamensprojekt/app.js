@@ -3,11 +3,12 @@ const express = require("express");
 const app = express();
 
 // setting up parsing of json and form-data
-app.use(express.json);
+app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-// setting up static folders
-app.use(express.static("public"));
+// setting up static folders for js and css
+app.use(express.static('public'));
+
 
 // setting up the ORM
 const { Model } = require("objection");
@@ -25,11 +26,20 @@ const knex = Knex(knexfile.development);
 Model.knex(knex);
 
 
-// HUSK AT LAVE SERVERSIDE SERVING AF SIDERNE!!! = sandwich
+const fs = require("fs");
 
+const navbar = fs.readFileSync("./public/navbar/navbar.html", "utf8");
+const footer = fs.readFileSync("./public/footer/footer.html", "utf8");
+
+const frontpage = fs.readFileSync("./public/frontpage/frontpage.html", "utf8");
 
 app.get("/", (req, res) => {
     return res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+   //return res.send(navbar + frontpage + footer);
+});
+
+app.get("/ny", (req, res) => {
+    return res.send({response: "noget"});
 });
 
 
