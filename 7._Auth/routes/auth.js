@@ -53,28 +53,33 @@ router.post("/signup", (req, res) => {
 
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
-
+    
     if (username && password) {
 
         try {
             User.query().select().where("username", username).limit(1).then(found => {
                 if (found.length > 0) {
-                    bcrypt.compare(password, found.password).then(result => {
+                    bcrypt.compare(password, found[0].password).then(result => {
                         if (result) {
                             //set the session to be logged in
+                            req.session.signedIn = true;
+                            req.session.userId = found[0].id;
                             return res.redirect("/welcome");
-                        }
-                        return res.status(400).send({response: "Password invalid"});
-                    });
-                                       
-                }
+                        } 
 
-                return res.status(400).send({response: "Username invalid"});
+                        return res.status(400).send({response: "Password invalid"}); 
+                    });                     
+                } else {
+                    return res.status(400).send({response: "Username invalid"});
+                }
+                 
             });
 
         } catch (error) {
             return res.status(500).send({response: "Something went wrong with the DB"}); 
         }
+
+     
 
     } else {
         return res.status(400).send({response: "username or password missing"});
@@ -85,6 +90,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/logout", (req, res) => {
+    req.session.signedIn = false;
     return res.redirect("/");
     //return res.status(501).send({response: req.body});
 });

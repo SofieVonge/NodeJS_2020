@@ -1,3 +1,5 @@
+
+
 function validateLogIn() {
 
     const username = document.forms.login.username.value;
@@ -5,7 +7,6 @@ function validateLogIn() {
 
     if (username && password) {
 
-        //ajax call checking wether username and password fits together.
         return true;
 
     } else {

@@ -1,17 +1,10 @@
 
-function userExists(name) { 
-    console.log("Do we even get here?")
-    $.get("users", (data) => {
-        console.log("data", data);
-        data.response.map((user) => {
-            console.log("user:", user);
-            if (user.username === name) {
-                return true;
-            }
-        });
-    });
+async function getUsers() { 
 
-    return false;
+    const response = await fetch("/users");
+    const data = await response.json();
+
+    return data.response;
 }
 
 function validateSignUp() {
@@ -28,21 +21,19 @@ function validateSignUp() {
 
         } else { //password validated to OK
 
-            console.log("Do we even get here?")
-             $.get("users").done((data) => {
-                console.log("data", data);
-                data.response.map((user) => {
-                console.log("user:", user);
+            getUsers().then((users) => {
+                users.map((user) => {
+                    if (user.username === username) {
+                     alert("User already exists");
+                     return false;
+                    }
+                });
 
-                if (user.username === username) {
-                    alert("User already exists");
-                    return false;
-                }
-             }); 
-        });
+                return true;
+            });
 
-    return true;
-
+            return true;
+    
         }
 
     } else { //password OR username don't exist

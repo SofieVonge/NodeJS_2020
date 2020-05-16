@@ -1,0 +1,14 @@
+{
+  "name": "9._nodemailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sofie",
+  "license": "ISC",
+  "dependencies": {
+    "nodemailer": "^6.4.6"
+  }
+}

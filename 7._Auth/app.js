@@ -76,12 +76,32 @@ app.get("/", (req, res) => {
 });
 
 app.get("/signup", (req, res) => {
-    return res.sendFile(__dirname + "/public/signup/signup.html");
+    return res.sendFile(__dirname + "/public/signup/signup.html");  
 });
 
 app.get("/welcome", (req, res) => {
-    return res.sendFile(__dirname + "/public/welcome/welcome.html");
+    if (req.session.signedIn) {
+       return res.sendFile(__dirname + "/public/welcome/welcome.html"); 
+    }
+    return res.send({response: "You are not authorized to see this page"});
 });
+
+app.get("/seeelectives", (req, res) => {
+    if (req.session.signedIn) {
+        return res.sendFile(__dirname + "/public/electives/electives.html"); 
+     }
+     return res.send({response: "You are not authorized to see this page"});
+
+});
+
+app.get("/email", (req, res) => {
+    if (req.session.signedIn) {
+        return res.sendFile(__dirname + "/public/email/email.html"); 
+     }
+     return res.send({response: "You are not authorized to see this page"});
+});
+
+
 
 
 

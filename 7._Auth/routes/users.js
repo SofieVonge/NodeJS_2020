@@ -19,11 +19,6 @@ router.get("/getsessionvalue", (req, res) => {
     return res.send({response: req.session.payingAttention});
 });*/
 
-/*router.get("/anything/:id", (req, res) => {
-    console.log(req.params.id);
-    return res.send({});
-});*/
-
 
 router.get("/users/:id", async (req, res) => {
     const id = Number(req.params.id);
@@ -31,6 +26,12 @@ router.get("/users/:id", async (req, res) => {
     return res.send({responde: user});
    // const userWithElectives = await User.query().select("username").withGraphFetched("electives").where("id", id);
     //return res.send({respnse: userWithElectives});
+});
+
+router.get("users/:username", async (req, res) => {
+    const username = req.params.username;
+    const user = await User.query().select().where("username", username).limit(1);
+    return res.send({response: user});
 });
 
 
