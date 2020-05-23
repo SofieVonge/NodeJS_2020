@@ -8,17 +8,37 @@
     <title>Email</title>
 </head>
 <body>
-    <script src="/email/email.js"></script>
+    
 
     <h>Send an email here:</h> <br>
-    <input id="from" placeholder="from"/>
-    <input id="to" placeholder="to"/>
-    <input id="subject" placeholder="subject"/>
-    <input id="message" placeholder="write your message here"/>
-
-    <button id="send">Send mail</button>
+    
+    <form name="email">
+        <input id="from" name="from" placeholder="from"/>
+        <input id="to" name="to" placeholder="to"/>
+        <input id="subject" name="subject" placeholder="subject"/>
+        <input id="message" name="message" placeholder="write your message here"/>
+        <button id="send" onclick="sendMail()" type="button">Send mail</button>
+    </form>
+   
 
     <div id="link"></div>
+
+    <script>
+
+        function sendMail() {
+            const from = document.forms.email.from.value;
+            const to = document.forms.email.to.value;
+            const subject = document.forms.email.subject.value;
+            const message = document.forms.email.message.value;
+
+            fetch("/email", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({to, from, subject, message})})
+             .then(response => response.json())
+             .then(data => {
+                  $("#link").append(`<a href="${data.response}">See your email</a>`);
+                });
+             }
+     
+    </script>
     
 </body>
 </html>

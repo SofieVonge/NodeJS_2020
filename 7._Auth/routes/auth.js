@@ -4,11 +4,6 @@ const User  = require("../models/User.js");
 const bcrypt = require("bcrypt");
 const saltRounds = 12;
 
-//bcrypt.hash("password", saltRounds).then(hash => console.log(hash));
-
-//bcrypt.compare("password", "$2b$12$9rO.PG0U1wtWGKzHwAvcWO364svqKRKBdbqtFHtDZA1oFTpce.eNi").then(result => console.log(result));
-
-
 //sign up with promises
 router.post("/signup", (req, res) => {
     //unpack username and password at the same time from req.body!
@@ -34,8 +29,8 @@ router.post("/signup", (req, res) => {
                                 username,
                                 password: hash
                             }).then(newUser => {
-                                return res.redirect("/");
-                               // return res.send({response: `The user ${newUser.username} is created`});
+                                return res.send({response: true})
+
                             });
                          });    
                     }
@@ -52,7 +47,8 @@ router.post("/signup", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-    const { username, password } = req.body;
+
+      const { username, password } = req.body;
     
     if (username && password) {
 
@@ -64,7 +60,7 @@ router.post("/login", (req, res) => {
                             //set the session to be logged in
                             req.session.signedIn = true;
                             req.session.userId = found[0].id;
-                            return res.redirect("/welcome");
+                            return res.send({response: true});
                         } 
 
                         return res.status(400).send({response: "Password invalid"}); 
@@ -79,7 +75,6 @@ router.post("/login", (req, res) => {
             return res.status(500).send({response: "Something went wrong with the DB"}); 
         }
 
-     
 
     } else {
         return res.status(400).send({response: "username or password missing"});
@@ -89,10 +84,10 @@ router.post("/login", (req, res) => {
     
 });
 
+
 router.get("/logout", (req, res) => {
-    req.session.signedIn = false;
+    delete req.session.signedIn;
     return res.redirect("/");
-    //return res.status(501).send({response: req.body});
 });
 
 module.exports = router;

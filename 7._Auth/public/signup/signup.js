@@ -1,13 +1,5 @@
 
-async function getUsers() { 
-
-    const response = await fetch("/users");
-    const data = await response.json();
-
-    return data.response;
-}
-
-function validateSignUp() {
+function signUp() {
 
     const username = document.forms.signup.username.value;
     const password = document.forms.signup.password.value;
@@ -21,18 +13,17 @@ function validateSignUp() {
 
         } else { //password validated to OK
 
-            getUsers().then((users) => {
-                users.map((user) => {
-                    if (user.username === username) {
-                     alert("User already exists");
-                     return false;
-                    }
-                });
-
-                return true;
+            fetch("/signup", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({username, password})})
+            .then(response => response.json())
+            .then(data => {
+                if (data.response === true) {
+                    window.location.replace("/");
+                } else {
+                    alert(data.response);
+                }       
             });
-
-            return true;
+    
+            return;
     
         }
 

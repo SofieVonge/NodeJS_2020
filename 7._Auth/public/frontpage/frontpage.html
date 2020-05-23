@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
     <title>KEA</title>
-    <script src="/frontpage/frontpage.js"></script>
+    <script src="../frontpage/frontpage.js"></script>
     <style>
         
         body {
@@ -22,7 +22,7 @@
 
     <h1>Welcome to KEA</h1> <br>
 
-    <form action="/login" method="POST" name="login" onsubmit="return validateLogIn()">
+    <form name="login">
         
         <div class="input-group">
            <div col-xs-3> 
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="btn-group">
-        <button type="submit" class="btn btn-default">Log in</button>
+        <button type="button" onclick="logIn()" class="btn btn-default">Log in</button>
         <a href="/signup" class="btn btn-default" role="button">Sign up</a>
         </div>
       </form> 

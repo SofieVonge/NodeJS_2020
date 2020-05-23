@@ -45,15 +45,12 @@ app.use(express.static('public'));
 });*/
 
 const authRoutes = require("./routes/auth.js");
-
 app.use(authRoutes);
 
 const userRoutes = require("./routes/users.js");
-
 app.use(userRoutes);
 
 const electiveRoutes = require("./routes/electives.js");
-
 app.use(electiveRoutes);
 
 
@@ -72,6 +69,9 @@ const knex = Knex(knexfile.development);
 Model.knex(knex);
 
 app.get("/", (req, res) => {
+      if (req.session.signedIn) {
+        return res.redirect("/welcome");
+    }
     return res.sendFile(__dirname + "/public/frontpage/frontpage.html");
 });
 
@@ -94,6 +94,16 @@ app.get("/seeelectives", (req, res) => {
 
 });
 
+app.get("/gif", (req, res) => {
+    if (req.session.signedIn) {
+        return res.sendFile(__dirname + "/public/gif/gif.html"); 
+     }
+     return res.send({response: "You are not authorized to see this page"});
+});
+
+"use strict";
+const nodemailer = require("nodemailer");
+
 app.get("/email", (req, res) => {
     if (req.session.signedIn) {
         return res.sendFile(__dirname + "/public/email/email.html"); 
@@ -102,19 +112,36 @@ app.get("/email", (req, res) => {
 });
 
 
+app.post("/email", async (req, res) => {
 
+    const to = req.body.to;
+    const from = req.body.from;
+    const subject = req.body.subject;
+    const message = req.body.message;
 
+    let account = await nodemailer.createTestAccount().catch(error => console.log(error));
 
-//get users with knex, example:
-/*app.get("/", async (req, res) => {
-    //with promises:
-   /* knex("users").select().then(users => {
-    return res.send({response: users});
-    });  */
+    let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false,
+        auth: {
+          user: account.user, 
+          pass: account.pass
+        }
+    });
 
-    //with async await:
-    /*return res.send({response: await knex("users").select()});
-});*/
+        let email = await transporter.sendMail({
+            from: from,
+            to: to,
+            subject: subject,
+            text: message
+        }).catch(error => console.log('error: ', error));
+
+        return res.send({response: nodemailer.getTestMessageUrl(email)});
+
+  
+});
 
 
 const port = process.env.PORT ? process.env.PORT : 3000;
